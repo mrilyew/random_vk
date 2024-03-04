@@ -11,7 +11,8 @@ class ImageSearcher:
     # Running search by photos
     def execute(self, q = "", count = 100):
         print('Starting searching next ' + str(count) + ' posts')
-        req = requests.get('https://api.vk.com/method/newsfeed.search?q=' + q + "&count" + str(count) + "&v=5.131&access_token=" + self.token)
+        req = requests.get('https://api.vk.com/method/newsfeed.search?q=' + requests.utils.quote(q) + "&count" + str(count) + "&v=5.131&access_token=" + self.token)
+        
 
         response = req.json()['response']
         items = response['items']
